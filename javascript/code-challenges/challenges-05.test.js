@@ -8,13 +8,15 @@ Write a function that finds the maximum value in an array.
 E.g. [4,2,7,5,9,2] -> 9
 ------------------------------------------------------------------------------------------------ */
 const maxInArray = (arr) => {
- let max = arr[0];
- for(let num of arr){//4, first one, 2, 7
-  if(num > max){ //2> 4,7>4
-    max = num;//max = 7
+  //<solution>
+  let max = arr[0];
+  for(let num of arr){
+    if(num > max){
+      max = num;
+    }
   }
- }
- return max;
+  return max;
+  //</solution>
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -30,7 +32,9 @@ const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningT
 };
 
 const getCourseKeys = (obj) => {
+  //<solution>
   return Object.keys(obj);
+  //</solution>
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -42,9 +46,13 @@ Write a function named checkValues that takes in an object and a value and retur
 ------------------------------------------------------------------------------------------------ */
 
 const checkValues = (obj, value) => {
+  //<solution>
+
   let found = false;
-  Object.values(obj).forEach(val => val === value ? found = true : '' );
+  Object.values(obj).forEach(val => val === value ? found = true : '');
   return found;
+
+  //</solution>
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -67,7 +75,14 @@ HR has asked you to change the data to make it easier to print so that it looks 
 ------------------------------------------------------------------------------------------------ */
 
 const updateNumbers = (obj) => {
-  // Solution code here...
+  //<solution>
+  const newArr = [];
+
+  Object.keys(obj).forEach(key => newArr.push(`${key}: ${obj[key]}`));
+
+  return newArr;
+
+  //</solution>
 };
 
 
@@ -123,7 +138,13 @@ const characters = [
 
 const getHouses = (arr) => {
   let houses = [];
-  // Solution code here...
+  //<solution>
+
+  Object.values(arr).forEach(person => {
+    houses.push(person.house);
+  });
+
+  //</solution>
   return houses;
 };
 
@@ -140,7 +161,19 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
+  //<solution>
+  let children = 0;
+
+  arr.forEach(person => {
+    if (person.name === character) {
+      Object.keys(person).forEach((key, idx) => {
+        if (key === 'children') children = Object.values(person)[idx].length;
+      });
+    }
+  });
+
+  return children ? true : false;
+  //</solution>
 
 };
 
@@ -153,7 +186,19 @@ The input and output of this function are the same as the input and output from 
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenEntries = (arr, character) => {
-  // Solution code here...
+  //<solution>
+  let children = 0;
+
+  Object.entries(arr).forEach(item => {
+    item.forEach(person => {
+      if (person.name === character) {
+        children = person.children.length > 0 ? true : false;
+      }
+    });
+  });
+
+  return children;
+  //</solution>
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -163,7 +208,17 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-  // Solution code here...
+  //<solution>
+  let count = 0;
+  Object.values(arr).forEach(character => {
+    count++;
+    if (character.spouse) count++;
+    if (character.children) {
+      count += character.children.length;
+    }
+  });
+  return count;
+  //</solution>
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -178,7 +233,18 @@ For example: [{ house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, ..
 
 const houseSize = (arr) => {
   const sizes = [];
-  // Solution code here...
+  //<solution>
+  arr.forEach(person => {
+    let sum = 1;
+    if (person.spouse) sum++;
+    person.children && person.children.forEach(() => sum++);
+    sizes.push({
+      house: person.house,
+      members: sum,
+    });
+  });
+
+  //</solution>
   return sizes;
 };
 
@@ -202,7 +268,18 @@ const deceasedSpouses = ['Catelyn', 'Lysa', 'Robert', 'Khal Drogo', 'Alerie'];
 
 const houseSurvivors = (arr) => {
   const survivors = [];
-  // Solution code here...
+  //<solution>
+  arr.forEach(person => {
+    let sum = 1;
+    if (person.spouse && !deceasedSpouses.includes(person.spouse)) sum++;
+    person.children && person.children.forEach(() => sum++);
+    survivors.push({
+      house: person.house,
+      members: sum,
+    });
+  });
+
+  //</solution>
   return survivors;
 };
 

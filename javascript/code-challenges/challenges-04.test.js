@@ -4,7 +4,7 @@
 These objects and arrays are global and will be used for each assignment. DO NOT ALTER THEM
 ------------------------------------------------------------------------------------------------ */
 
-const people = ['Kookla', 'Fran', 'Ollie'];//people: [...arr]
+const people = ['Kookla', 'Fran', 'Ollie'];
 
 const stuff = {
   tv: 'huge',
@@ -12,22 +12,23 @@ const stuff = {
   toys: 57,
   toothbrush: 'frayed',
   cars: ['Toyota', 'Mazda']
-}// A: Bvalue stuff: {...obj}
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1
 
 In the addPeople function, use spread and destructuring assignments to:
-  - Create a new as a copy of the people array
+  - Create a new array called newPeople as a copy of the people array
   - Add a person named 'Odie' added to the beginning of the array
   - Add another one named 'Garfield' added to the end of the array
-  - Return the new array
+  - Return the new array that you've created
 
 Prove that the original people array is unchanged
 
 ------------------------------------------------------------------------------------------------ */
 
 const addPeople = (arr) => {
+  // Solution code here...
   let newPeople = ["Odie", ...arr, "Garfield"];
   return newPeople;
 };
@@ -39,13 +40,14 @@ In the setSate function, use spread and destructuring assignments to:
   - Create and return a state object with 2 keys:
     people, which will contain a copy of the people array
     stuff, which will contain a copy of the stuff object
-  - Return the state object that you've created
+  - Return the new object that you've created
 
 Ensure that the original people array and stuff objects are unchanged
 
 ------------------------------------------------------------------------------------------------ */
 
 const setState = (arr, obj) => {
+  // Solution code here...
   let state = {
     people: [...arr],
     stuff: {...obj}
@@ -72,6 +74,17 @@ Ensure that the original people array and stuff objects are unchanged
 
 const newState = (arr, obj) => {
   // Solution code here...
+  let state = {
+    people: [...arr],
+    stuff: {
+      ...obj,
+      toys: obj.toys + 1,
+      toothbrush: 'brand new',
+      cars: [...obj.cars, "Ford"]
+    }
+  };
+
+  return state;
 };
 
 
